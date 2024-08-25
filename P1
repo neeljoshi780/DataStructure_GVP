@@ -1,0 +1,210 @@
+//(1).Write menu driven program to implement operations on array.
+//(1)Add (2)Delete (3)Modify (4)Sort (5)Simple Search (6)Binary Search
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+   int add(int [],int,int);
+   void delet(int [],int,int);
+   void modify(int [],int,int,int);
+   void sort(int [],int);
+   void ssearch(int [],int,int);
+   void bsearch(int [],int,int);
+   void display(int [],int);
+   int array[10],index=-1,ele,newele;
+   clrscr();
+
+   printf("1 Add\n");
+   printf("2 Delete\n");
+   printf("3 Modify\n");
+   printf("4 Sort\n");
+   printf("5 Simple Search\n");
+   printf("6 Binary Search\n");
+   printf("7 Exit\n");
+
+   while(1)
+   {
+      int c;
+      printf("\nEnter The Choice::");
+      scanf("%d",&c);
+
+      switch(c)
+      {
+	 case 1:printf("Enter The Element=");
+		scanf("%d",&ele);
+		index=add(array,index,ele);
+		display(array,index);
+		break;
+	 case 2:printf("Enter The Delete Value=");
+		scanf("%d",&ele);
+		delet(array,index,ele);
+		display(array,index);
+		break;
+	 case 3:printf("Enter the Element Value Modify=");
+		scanf("%d",&ele);
+		printf("Enter The New Value of Element=");
+		scanf("%d",&newele);
+		modify(array,index,ele,newele);
+		display(array,index);
+		break;
+	 case 4:sort(array,index);
+		display(array,index);
+		break;
+	 case 5:printf("Enter The Simple Search Element=");
+		scanf("%d",&ele);
+		ssearch(array,index,ele);
+		break;
+	 case 6:printf("Enter The Binary Search Element=");
+		scanf("%d",&ele);
+		bsearch(array,index,ele);
+		break;
+	 case 7:exit(0);
+		break;
+	 default:printf("Pls Enter Valid Choice.!!");
+      }
+   }
+}
+
+//Add Method
+int add(int array[],int index,int ele)
+{
+   if(index==9)
+   {
+      printf("\nArray Size Is Full.!!");
+   }
+   else
+   {
+      index+=1;
+      array[index]=ele;
+   }
+   return index;
+}
+
+//Delete Method
+void delet(int array[],int index,int ele)
+{
+   if(index==-1)
+   {
+      printf("Array Is Empty.!!");
+   }
+   else
+   {
+     int i;
+     for(i=0;i<=index;i++)
+     {
+	if(array[i]==ele)
+	{
+	   array[i]=0;
+	   break;
+	}
+     }
+     if(i>index)
+     {
+	printf("%d Values Not Available in Array.!!\n",ele);
+     }
+   }
+}
+
+//Modify Method
+void modify(int array[],int index,int ele,int newele)
+{
+   if(index==-1)
+   {
+      printf("Array Is Empty.!!");
+   }
+   else
+   {
+      int i;
+      for(i=0;i<=index;i++)
+      {
+	 if(array[i]==ele)
+	 {
+	    array[i]=newele;
+	    break;
+	 }
+      }
+      if(i>index)
+      {
+	 printf("%d Values Not Available in Array.!!\n",ele);
+      }
+   }
+}
+
+//Sort Method
+void sort(int array[],int index)
+{
+   int i,j;
+   for(i=0;i<index;i++)
+   {
+	for(j=0;j<index;j++)
+	{
+	   if(array[j]>array[j+1])
+	   {
+	      array[j]=array[j]+array[j+1];
+	      array[j+1]=array[j]-array[j+1];
+	      array[j]=array[j]-array[j+1];
+	   }
+	}
+   }
+}
+
+//Simple Search Method
+void ssearch(int array[],int index,int ele)
+{
+   if(index==-1)
+   {
+      printf("Array Is Empty.!!");
+   }
+   else
+   {
+      int i;
+      for(i=0;i<=index;i++)
+      {
+	 if(array[i]==ele)
+	 {
+	    printf("%d Element Is %d Index Available.",array[i],i);
+	    break;
+	 }
+      }
+      if(i>index)
+      {
+	 printf("%d Element Not Available in this Array.!!",ele);
+      }
+   }
+}
+
+//Binary Search Method
+void bsearch(int array[],int index,int ele)
+{
+   int low=0,high=index,mid;
+   sort(array,index);
+
+   while(low<=high)
+   {
+      mid=(low+high)/2;
+      if(array[mid]>ele)
+	 high=mid-1;
+      else if(array[mid]<ele)
+	 low=mid+1;
+      else
+      {
+	 printf("%d Element is Available.",ele);
+	 break;
+      }
+      if(low>high)
+      {
+	 printf("%d Element Not Available in this Array.!!",ele);
+      }
+   }
+}
+
+//Display Method
+void display(int array[],int index)
+{
+   int i;
+   for(i=0;i<=index;i++)
+   {
+      printf("%d,",array[i]);
+   }
+}
