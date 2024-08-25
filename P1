@@ -192,10 +192,10 @@ void bsearch(int array[],int index,int ele)
 	 printf("%d Element is Available.",ele);
 	 break;
       }
-      if(low>high)
-      {
-	 printf("%d Element Not Available in this Array.!!",ele);
-      }
+   }
+   if(low>high)
+   {
+      printf("%d Element Not Available in this Array.!!",ele);
    }
 }
 
