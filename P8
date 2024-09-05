@@ -1,0 +1,153 @@
+//(8).write menu driven program to implement circuler queue
+//(1)insert (2)delete (3)modify (4)display
+#include<stdio.h>
+void main()
+{
+   void insert(int[],int,int *,int *);
+   void deletecq(int[],int *,int *);
+   void modify(int[],int *,int,int);
+   void display(int[],int *);
+   int cq[10],ele,newele,f=-1,r=-1;
+   int *front=&f,*rear=&r;
+   clrscr();
+
+   printf("1 insert\n");
+   printf("2 delete\n");
+   printf("3 modify\n");
+   printf("4 display\n");
+   printf("5 exit\n");
+
+   while(1)
+   {
+      int c;
+      printf("Enter Choice:");
+      scanf("%d",&c);
+
+      switch(c)
+      {
+	 case 1:printf("Enter Element=");
+		scanf("%d",&ele);
+		insert(cq,ele,front,rear);
+		break;
+	 case 2:deletecq(cq,front,rear);
+		break;
+	 case 3:printf("enter the change element=");
+		scanf("%d",&ele);
+		printf("enter the new element");
+		scanf("%d",&newele);
+		modify(cq,front,ele,newele);
+		break;
+	 case 4:display(cq,front);
+		break;
+	 case 5:exit(0);
+		break;
+      }
+   }
+}
+
+//insert method
+void insert(int cq[],int ele,int *front,int *rear)
+{
+   if(*rear==9 && *front==0 || *rear==*front-1)
+   {
+      printf("Circuler Que is Full.!!\n");
+   }
+   else
+   {
+      if(*front==-1 && *rear==-1)
+      {
+	 *front=*rear=0;
+	 cq[*rear]=ele;
+      }
+      else
+      {
+	 if(*rear==9 && *front!=0)
+	 {
+	    *rear=0;
+	    cq[*rear]=ele;
+	 }
+	 else
+	 {
+	    *rear+=1;
+	    cq[*rear]=ele;
+	 }
+      }
+   }
+}
+
+//delete method
+void deletecq(int cq[],int *front,int *rear)
+{
+   if(*front==-1 && *rear==-1)
+   {
+      printf("Circuler Que is emty.!!\n");
+   }
+   else
+   {
+      if(*front==*rear)
+      {
+	 printf("cq delete is %d\n",cq[*front]);
+	 cq[*front]=0;
+	 *front=*rear=-1;
+      }
+      else
+      {
+	 if(*front==9)
+	 {
+	    printf("cq delete is %d\n",cq[*front]);
+	    cq[*front]=0;
+	    *front=0;
+	 }
+	 else
+	 {
+	    printf("cq delete is %d\n",cq[*front]);
+	    cq[*front]=0;
+	    *front+=1;
+	 }
+      }
+   }
+}
+
+//modify method
+void modify(int cq[],int *front,int ele,int newele)
+{
+   if(*front==-1)
+   {
+      printf("CQ is empty.!!");
+   }
+   else
+   {
+      int i,temp=1;
+      for(i=0;i<10;i++)
+      {
+	 if(cq[i]==ele)
+	 {
+	    cq[i]=newele;
+	    temp=0;
+	    break;
+	 }
+      }
+      if(temp)
+      {
+	 printf("%d element not match in CQ",ele);
+      }
+   }
+}
+
+//display method
+void display(int cq[],int *front)
+{
+   if(*front==-1)
+   {
+      printf("CQ is empty.!!\n");
+   }
+   else
+   {
+      int i;
+      for(i=0;i<10;i++)
+      {
+	 printf("%d,",cq[i]);
+      }
+      printf("\n");
+   }
+}
