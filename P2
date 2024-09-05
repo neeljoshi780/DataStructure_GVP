@@ -1,0 +1,137 @@
+//(2).Write Menu driven Program to implement operations of stack.
+//(1)Push (2)Pop (3)Peep (4)Modify (5)Display
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+   void push(int [],int *,int);
+   void pop(int [],int *);
+   void peep(int [],int *);
+   void modify(int [],int *,int,int);
+   void display(int [],int *);
+   int stack[10],i=-1,ele,newele;
+   int *top=&i;
+   clrscr();
+
+   printf("1 Push\n");
+   printf("2 Pop\n");
+   printf("3 Peep\n");
+   printf("4 Modify\n");
+   printf("5 Display\n");
+   printf("6 Exit\n");
+
+   while(1)
+   {
+      int c;
+      printf("Select The Choice::");
+      scanf("%d",&c);
+
+      switch(c)
+      {
+	 case 1:printf("Enter The Element=");
+		scanf("%d",&ele);
+		push(stack,top,ele);
+		break;
+	 case 2:pop(stack,top);
+		break;
+	 case 3:peep(stack,top);
+		break;
+	 case 4:printf("Enter the Modify Element=");
+		scanf("%d",&ele);
+		printf("Enter the New Element=");
+		scanf("%d",&newele);
+		modify(stack,top,ele,newele);
+		break;
+	 case 5:display(stack,top);
+		break;
+	 case 6:exit(0);
+		break;
+      }
+   }
+}
+
+//Push Method
+void push(int stack[],int *top,int ele)
+{
+   if(*top==9)
+   {
+      printf("Stack is Overflow.!!\n");
+   }
+   else
+   {
+      *top+=1;
+      stack[*top]=ele;
+      printf("Stack Top Element %d Push Successfull.\n",stack[*top]);
+   }
+}
+
+//Pop Method
+void pop(int stack[],int *top)
+{
+   if(*top==-1)
+   {
+      printf("Stack is Empty.!!\n");
+   }
+   else
+   {
+      printf("Stack Top Element %d Pop Successfull.\n",stack[*top]);
+      stack[*top]=0;
+      *top-=1;
+   }
+}
+
+//Peep Method
+void peep(int stack[],int *top)
+{
+   if(*top==-1)
+   {
+      printf("Stack is Empty.!!\n");
+   }
+   else
+   {
+      printf("Stack Peep Element is %d\n",stack[*top]);
+   }
+}
+
+//Modify Method
+void modify(int stack[],int *top,int ele,int newele)
+{
+   if(*top==-1)
+   {
+      printf("Stack is Empty.!!\n");
+   }
+   else
+   {
+      int i;
+      for(i=0;i<=*top;i++)
+      {
+	 if(stack[i]==ele)
+	 {
+	    stack[i]=newele;
+	    break;
+	 }
+      }
+      if(i>*top)
+      {
+	 printf("%d Element is Not Available in Stack.!!\n");
+      }
+   }
+}
+
+//Display Method
+void display(int stack[],int *top)
+{
+   int i;
+   if(*top==-1)
+   {
+      printf("Stack is Empty.!!\n");
+   }
+   else
+   {
+      for(i=0;i<=*top;i++)
+      {
+	 printf("%d,",stack[i]);
+      }
+      printf("\n");
+   }
+}
