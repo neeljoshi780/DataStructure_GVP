@@ -36,14 +36,14 @@ void main()
 		index=add(array,index,ele);
 		display(array,index);
 		break;
-	 case 2:printf("Enter The Delete Value=");
+	 case 2:printf("Enter The Delete Element=");
 		scanf("%d",&ele);
 		delet(array,index,ele);
 		display(array,index);
 		break;
-	 case 3:printf("Enter the Element Value Modify=");
+	 case 3:printf("Enter The Modify Element=");
 		scanf("%d",&ele);
-		printf("Enter The New Value of Element=");
+		printf("Enter The New Element=");
 		scanf("%d",&newele);
 		modify(array,index,ele,newele);
 		display(array,index);
@@ -71,7 +71,7 @@ int add(int array[],int index,int ele)
 {
    if(index==9)
    {
-      printf("\nArray Size Is Full.!!");
+      printf("\nArray Size is Full.!!");
    }
    else
    {
@@ -86,7 +86,7 @@ void delet(int array[],int index,int ele)
 {
    if(index==-1)
    {
-      printf("Array Is Empty.!!");
+      printf("Array is Empty.!!");
    }
    else
    {
@@ -111,7 +111,7 @@ void modify(int array[],int index,int ele,int newele)
 {
    if(index==-1)
    {
-      printf("Array Is Empty.!!");
+      printf("Array is Empty.!!");
    }
    else
    {
@@ -154,7 +154,7 @@ void ssearch(int array[],int index,int ele)
 {
    if(index==-1)
    {
-      printf("Array Is Empty.!!");
+      printf("Array is Empty.!!");
    }
    else
    {
@@ -163,7 +163,7 @@ void ssearch(int array[],int index,int ele)
       {
 	 if(array[i]==ele)
 	 {
-	    printf("%d Element Is %d Index Available.",array[i],i);
+	    printf("%d Element is %d Index Available.",array[i],i);
 	    break;
 	 }
       }
