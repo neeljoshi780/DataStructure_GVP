@@ -1,0 +1,95 @@
+//(4).Write program to convert infix expression to suffix expression using stack.
+#include<stdio.h>
+void main()
+{
+   void convert(char [],char [],int);
+   int pre(char);
+   int push(char [],char,int);
+   int pop(char [],int);
+   char stack[10],infix[50];
+   int top=-1;
+   clrscr();
+
+   printf("Enter infix");
+   scanf("%s",&infix);
+
+   convert(stack,infix,top);
+
+   getch();
+}
+
+//convert method
+void convert(char stack[],char infix[],int top)
+{
+   int i=0;
+   while(infix[i]!='\0')
+   {
+      if(infix[i]=='+' || infix[i]=='-' || infix[i]=='*' || infix[i]=='/')
+      {
+	 if(top==-1)
+	 {
+	    top=push(stack,infix[i],top);
+	 }
+	 else
+	 {
+	    while(pre(stack[top])>=pre(infix[i]) && top!=-1)
+	    {
+	       top=pop(stack,top);
+	    }
+	    top=push(stack,infix[i],top);
+	 }
+      }
+      else
+      {
+	 printf("%c",infix[i]);
+      }
+      i++;
+   }
+   while(top!=-1)
+   {
+      top=pop(stack,top);
+   }
+}
+
+//pre method
+int pre(char c)
+{
+   if(c=='*' || c=='/')
+   {
+      return 1;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+//push method
+int push(char stack[],char c,int top)
+{
+   if(top==9)
+   {
+      printf("overflow");
+   }
+   else
+   {
+      top++;
+      stack[top]=c;
+   }
+   return top;
+}
+
+//pop method
+int pop(char stack[],int top)
+{
+   if(top==-1)
+   {
+      printf("underflow");
+   }
+   else
+   {
+      printf("%c",stack[top]);
+      top--;
+   }
+   return top;
+}
