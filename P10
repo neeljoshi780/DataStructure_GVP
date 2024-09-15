@@ -25,17 +25,15 @@ void main()
 	 case 1:printf("Enter Your Age:");
 		scanf("%d",&age);
 		insert(sq,rq,sfront,srear,rfront,rrear,age);
-		display(sq,rq,srear,rfront);
+		display(sq,rq,srear,rrear);
 		break;
 	 case 2:deleteq(sq,rq,sfront,srear,rfront,rrear);
-		display(sq,rq,srear,rfront);
+		display(sq,rq,srear,rrear);
 		break;
 	 case 3:exit(0);
 		break;
       }
    }
-
-   getch();
 }
 
 void insert(int sq[],int rq[],int *sfront,int *srear,int *rfront,int *rrear,int age)
@@ -86,6 +84,7 @@ void deleteq(int sq[],int rq[],int *sfront,int *srear,int *rfront,int *rrear)
       }
       else
       {
+	 sq[*sfront]=0;
 	 *sfront+=1;
       }
    }
@@ -97,6 +96,7 @@ void deleteq(int sq[],int rq[],int *sfront,int *srear,int *rfront,int *rrear)
       }
       else
       {
+	 rq[*rfront]=0;
 	 *rfront+=1;
       }
    }
@@ -104,15 +104,33 @@ void deleteq(int sq[],int rq[],int *sfront,int *srear,int *rfront,int *rrear)
 
 void display(int sq[],int rq[],int *srear,int *rrear)
 {
-   int i;
    printf("SQ:");
-   for(i=0;i<=*srear;i++)
+   if(*srear==-1)
    {
-      printf("%d,",sq[i]);
+      printf("Senear Que is Empty.!!\n");
    }
-   printf("\nRQ:");
-   for(i=0;i<*rrear;i++)
+   else
    {
-      printf("%d,",rq[i]);
+      int i;
+      for(i=0;i<=*srear;i++)
+      {
+	 printf("%d,",sq[i]);
+      }
+      printf("\n");
+   }
+
+   printf("RQ:");
+   if(*rrear==-1)
+   {
+      printf("Reguler Que is Empty.!!");
+   }
+   else
+   {
+      int j;
+      for(j=0;j<=*rrear;j++)
+      {
+	 printf("%d,",rq[j]);
+      }
+      printf("\n");
    }
 }
